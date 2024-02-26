@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+// App.js
+import React from 'react';
+import { BrowserRouter as Router, Switch, Route, Routes } from 'react-router-dom';
 
-function App() {
+import Profile from "./pages/Profile"
+import ListOfUsers from "./pages/ListOfUsers"
+import CreateUser from './pages/CreateUser';
+import Nav from './components/Nav';
+
+const App = () => {
+  // Mock user state
+  const user = {
+    role: 'admin', // or 'ACC'
+    name: 'Admin'
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div>
+        <Nav user={user} />
+        <Routes>
+          <Route path="/profile" component={Profile} />
+          <Route path="/list-of-users" component={ListOfUsers} />
+          <Route path="/create-user" component={CreateUser} />
+        
+          </Routes>
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;
