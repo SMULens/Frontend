@@ -8,11 +8,14 @@ import CreateUser from './pages/CreateUser';
 import Nav from './components/Nav';
 import Footer from './components/Footer';
 
+import StudentCardList from './components/StudentCardList';
+import Filter from './components/Filter';
+
 const App = () => {
   // Mock user state
   const user = {
-    role: 'admin', // or 'ACC'
-    name: 'Admin'
+    role: 'ACC', // or 'ACC'
+    name: 'ACC'
   };
 
   return (
@@ -25,6 +28,8 @@ const App = () => {
           <Route path="/create-user" component={CreateUser} />
         
           </Routes>
+          <Filter/>
+          <StudentCardList/>
           <Footer/>
       </div>
     </Router>
