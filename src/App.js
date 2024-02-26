@@ -6,6 +6,7 @@ import Profile from "./pages/Profile"
 import ListOfUsers from "./pages/ListOfUsers"
 import CreateUser from './pages/CreateUser';
 import Nav from './components/Nav';
+import Footer from './components/Footer';
 
 const App = () => {
   // Mock user state
@@ -24,6 +25,7 @@ const App = () => {
           <Route path="/create-user" component={CreateUser} />
         
           </Routes>
+          <Footer/>
       </div>
     </Router>
   );

@@ -1,11 +1,12 @@
-
-  
-  .footer {
-    background-color: #333;
-    color: white;
-    padding: 20px;
-    text-align: center;
-    margin-top: auto; /* Push the footer to the bottom */
-    width: 100%; /* Ensure footer takes full width */
-  }
-  
+/* Footer.css */
+.footer {
+  background-color: #caf0f8;
+  padding: 10px;
+  text-align: center;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 999; /* Ensure the footer is above other content */
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); /* Add a shadow at the top for depth */
+}
