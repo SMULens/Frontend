@@ -1,15 +1,14 @@
 // App.js
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router,  Route, Routes } from 'react-router-dom';
 
 import Profile from "./pages/Profile"
 import ListOfUsers from "./pages/ListOfUsers"
 import CreateUser from './pages/CreateUser';
 import Nav from './components/Nav';
 import Footer from './components/Footer';
-
-import StudentCardList from './components/StudentCardList';
-import Filter from './components/Filter';
+import AccHome from './pages/AccHome';
+import StudentDetails from './pages/StudentDetails';
 
 const App = () => {
   // Mock user state
@@ -23,13 +22,13 @@ const App = () => {
       <div>
         <Nav user={user} />
         <Routes>
-          <Route path="/profile" component={Profile} />
-          <Route path="/list-of-users" component={ListOfUsers} />
-          <Route path="/create-user" component={CreateUser} />
-        
+          <Route path="/profile" element={<Profile/>} />
+          <Route path="/list-of-users" element={<ListOfUsers/>} />
+          <Route path="/create-user" element={<CreateUser/>} />
+          <Route path="/acchome" element={<AccHome/>}/>
+          <Route path="/studentCourses/:id" element={<StudentDetails/>}/>
           </Routes>
-          <Filter/>
-          <StudentCardList/>
+          
           <Footer/>
       </div>
     </Router>

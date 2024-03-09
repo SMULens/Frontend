@@ -1,70 +1,61 @@
 import React, { useState } from 'react';
-import { FormControl, Input, FormLabel, Button } from "@mui/joy";
+import { FormControl, Input, FormLabel, Button, IconButton, Paper, Tooltip, Grid } from "@mui/material";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import SortIcon from "@mui/icons-material/Sort";
 import FilterListOffIcon from "@mui/icons-material/FilterListOff";
-import { IconButton, Paper } from "@mui/material";
+import { styled } from '@mui/material/styles';
+
+const FilterPaper = styled(Paper)(({ theme }) => ({
+  display: "flex",
+  justifyContent: "space-around",
+  alignItems: "center",
+  flexWrap: "wrap",
+  borderRadius: "20px",
+  width: "80%",
+  margin: "30px auto",
+  padding: theme.spacing(2),
+  backgroundColor: theme.palette.background.paper,
+}));
 
 function Filter() {
   const [searchText, setSearchText] = useState('');
-  const [sortBy, setSortBy] = useState(null); // null = no sorting, 'gpa' = sort by GPA ascending, 'gpa_desc' = sort by GPA descending
+  const [sortBy, setSortBy] = useState(''); // Initialize as empty string instead of null
 
   const handleSortBy = (type) => {
-    if (type === sortBy) {
-      // If the same sorting type is clicked again, toggle between ascending and descending
-      setSortBy(type === 'gpa' ? 'gpa_desc' : 'gpa');
-    } else {
-      // If a different sorting type is clicked, default to ascending order
-      setSortBy('gpa');
-    }
+    setSortBy(prevSortBy => (prevSortBy === type ? `${type}_desc` : type));
   };
 
   const clearFilters = () => {
     setSearchText('');
-    setSortBy(null);
+    setSortBy(''); // Reset to empty string
   };
 
   return (
-    <Paper
-      sx={{
-        display: "flex",
-        justifyContent: "space-around",
-        borderRadius: "20px",
-        width: "70%",
-        margin: "60px auto",
-        height: "75px",
-        backgroundColor: "#FBFAF5",
-        paddingLeft: "35px",
-        paddingRight: "20px",
-      }}
-      component={"div"}
-    >
-      <FormControl size="md" sx={{ width: "350px", marginRight: "80px" }}>
-        <FormLabel size="sm">Search</FormLabel>
-        <Input 
-          size="sm" 
-          value={searchText} 
-          onChange={(e) => setSearchText(e.target.value)} 
+    <FilterPaper elevation={3}>
+      <FormControl variant="outlined" size="small" sx={{ width: "300px" }}>
+        <FormLabel>Search</FormLabel>
+        <Input
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
           placeholder="Enter student name"
+          endAdornment={<IconButton onClick={() => setSearchText('')}><FilterListOffIcon /></IconButton>}
         />
       </FormControl>
-      <div>
-        <FormLabel size="sm " sx={{ marginBottom: "8px" }}>
-          Sort by GPA
-        </FormLabel>
-        <IconButton onClick={() => handleSortBy('gpa')} color={sortBy === 'gpa' ? 'success' : 'neutral'}>
+      <Tooltip title="Sort by GPA" placement="bottom">
+        <IconButton onClick={() => handleSortBy('gpa')} color={sortBy.includes('gpa') ? 'primary' : 'default'}>
           <SortIcon />
           {sortBy === 'gpa' && <ArrowUpwardIcon />}
           {sortBy === 'gpa_desc' && <ArrowDownwardIcon />}
         </IconButton>
-      </div>
-      
-      <IconButton onClick={clearFilters}>
-        <FilterListOffIcon />
-      </IconButton>
-    </Paper>
-  )
+      </Tooltip>
+      <Tooltip title="Clear Filters" placement="bottom">
+        <IconButton onClick={clearFilters}>
+          <FilterListOffIcon />
+        </IconButton>
+      </Tooltip>
+    </FilterPaper>
+  );
 }
 
 export default Filter;

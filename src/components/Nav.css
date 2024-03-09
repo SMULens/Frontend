@@ -4,7 +4,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  background-color: #caf0f8;
+  background-color: #BDEEE6;
   font-weight: bold;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -50,6 +50,6 @@
 }
 
 .nav-link:hover, .nav-button:hover {
-  background-color: #00a6c4;
+  background-color: #03CBE2;
   color: white;
 }
